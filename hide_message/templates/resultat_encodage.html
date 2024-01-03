@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <title>Hide Message</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.css' %}">
+    <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+  </head>
+  <body>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-primary">
+      <h2 class="text-white text-center h2 text-uppercase">HideMessage</h2>
+    </header>
+
+    <div class="row p-5 w-100 h-100 text-center justify-content-center">
+        <a href="{{ page_encodage }}" class="btn btn-outline-primary mb-3">< Revenir</a>
+        
+        <div class="col-12 text-center P-5">
+            <span class="display-4">Encodage Reussi </span><p>
+            <p class="lead display-5" style="font-size:xx-large;">Ci dessous l'image encodee que vous pouvez telecharger et la cle de decodage qui vous servira pour decoder le message.</p>
+        </div>
+        <div class="justify-content-center" style="min-width: 20em;">
+            <center><img src="{% static output_image %}" alt="{{output_image}}" srcset="" class="output_image" /></center>
+            <a href="{% static output_image %}" class="" target="_blank">Telecharger</a>
+            <input type="text" value="{{decoding_key}}" id="decoding_key" class="form-control text-center" readonly>
+            <button onclick="copyText()" class="btn btn-primary mt-3">Copier la cle</button>
+        </div>
+    </div>
+
+    <footer class="d-flex flex-wrap justify-content-center py-3 mt-4 border-top bg-secondary">
+      <h5 class="text-white text-center h5 text-uppercase">TPE VIRTUALISATION ET CLOUD, GROUPE 5 </h5>
+    </footer>
+
+    <style>
+        .output_image{
+            height: 200px;
+            width: 200px;
+            object-fit: cover;
+            box-shadow: 100px;
+
+        }
+    </style>
+    <script>
+        function copyText() {
+            keyContainer = document.getElementById("decoding_key");
+            keyContainer.select();
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+            alert("Cle copie avec succes !!!")
+        }
+    </script>
+  </body>
+</html>

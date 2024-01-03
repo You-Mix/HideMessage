@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <title>Hide Message</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.css' %}">
+        <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh; /* 100% de la hauteur de la vue */
+                margin: 0;
+            }
+
+            main {
+                flex: 1; /* Ajuste pour remplir l'espace disponible entre l'en-tête et le pied de page */
+                padding: 20px;
+            }
+
+            footer {
+                background-color: #f1f1f1;
+                padding: 10px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-primary">
+        <h2 class="text-white text-center h2 text-uppercase">Hide Message</h2>
+      </header>
+
+      <main>
+        {% block main %}
+
+        {% endblock main %}
+
+        </main>
+        
+
+        <footer class="d-flex flex-wrap justify-content-center py-3 mt-5 border-top bg-secondary">
+        <h5 class="text-white text-center h5 text-uppercase">TPE VIRTUALISATION ET CLOUD, GROUPE 5 </h5>
+        </footer>
+        <script src="{% static 'js/jquery-3.7.0.js' %}"></script>
+        <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'js/dataTables.bootstrap5.min.js' %}"></script>
+        <script src="{% static 'js/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'js/responsive.bootstrap5.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+        <script src="{% static 'js/feather.min.js' %}" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+        <script src="{% static 'js/Chart.min.js' %}" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+        <script src="{% static 'js/dashboard.js' %}"></script>
+        <script src="{% static 'js/Chart.js' %}"></script>
+           
+
+        <script>
+            $(document).ready(function(){
+                // Basic
+                $('.dropify').dropify();
+
+                // Translated
+                $('.dropify-fr').dropify({
+                    messages: {
+                        default: 'Glissez-ici',
+                        replace: 'Glissez-ici',
+                        remove:  'Supprimer',
+                        error:   'Désolé, le fichier trop volumineux'
+                    }
+                });
+
+                // Used events
+                var drEvent = $('#input-file-events').dropify();
+
+                drEvent.on('dropify.beforeClear', function(event, element){
+                    return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+                });
+
+                drEvent.on('dropify.afterClear', function(event, element){
+                    alert('File deleted');
+                });
+
+                drEvent.on('dropify.errors', function(event, element){
+                    console.log('Has Errors');
+                });
+
+                var drDestroy = $('#input-file-to-destroy').dropify();
+                drDestroy = drDestroy.data('dropify')
+                $('#toggleDropify').on('click', function(e){
+                    e.preventDefault();
+                    if (drDestroy.isDropified()) {
+                        drDestroy.destroy();
+                    } else {
+                        drDestroy.init();
+                    }
+                })
+            });
+        </script>
+
+        <script>
+            $(function(){
+                $('.hideMe').hide()
+            })
+        </script>
+
+    </body>
+</html>

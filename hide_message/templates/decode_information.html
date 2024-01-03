@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <title>Cloud Storage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.css' %}">
+  <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+</head>
+<body>
+
+   <div class="container-fluid" >
+    
+<br><br>
+<br><br>
+    <div class="row">
+        <div class="col-md-5" style=" height: 555px;width: 600px;">
+          <img src="{% static 'images/img2.png' %}" astyle=" height: 100%;width: 100%;">
+        </div>
+        <div class="col-md-7">
+            <h3 class="text-center" style="margin-top: 50px;">
+               <b> Page d'extraction</b> 
+            </h3>
+
+            <br>
+            <div id="">
+                   
+                <div class="form-group">
+                  <label for="">message</label>
+                  <textarea class="form-control" name="" id="" cols="30" rows="10" >
+                    {{message}}
+                  </textarea>
+                </div>   
+                
+                <a href="/steganographie" class="btn btn-outline-primary btn-block">Revenir page accueil</a>
+              
+            </div>
+            
+        </div>
+
+    </div>
+   </div>
+
+   
+
+</body>
+</html>

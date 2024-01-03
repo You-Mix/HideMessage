@@ -1,0 +1,17 @@
+{% extends "layout/base.html" %}
+{% block main %}
+  <div class="row p-5 w-100 h-100 justify-content-center">
+    <div class="col-12 text-center P-5">
+      <span class="display-4">Bienvenue sur Hide Message </span><p>
+      <p class="lead display-5" style="font-size:xx-large;">La plateforme qui securise vos messages avec des techniques de steganographie.</p>
+    </div>
+    <div class="col-md-4 p-5">
+      <a href="{% url 'page_encodage' %}" class="btn btn-primary h-100 w-100 rounded-3"><h2 class="h2 m-5">ENCODER</h2></a>
+    </div>
+    <div class="col-md-4 p-5">
+      <a href="{% url 'page_decodage' %}" class="btn btn-success h-100 w-100 rounded-3"><h2 class="h2 m-5">DECODER</h2></a>
+    </div>
+  </div>
+{% endblock main %}
+
+     

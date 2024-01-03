@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <title>Cloud Storage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.css' %}">
+  <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+</head>
+<body>
+
+   <div class="container-fluid" >
+    
+<br><br>
+<br><br>
+    <div class="row">
+        <div class="col-md-5" style=" height: 555px;width: 600px;">
+          <img src="{% static 'images/img2.png' %}" astyle=" height: 100%;width: 100%;">
+        </div>
+        <div class="col-md-7">
+            <h3 class="text-center" style="margin-top: 50px;">
+               <b> GROUP 3 : Storage Cloud</b> 
+            </h3>
+
+            <div class="step-1">
+              <div class="form-group">
+                  <label for="">Quelle est la nature de votre information ?</label>
+                  <select name="dataType"  id="dataType" class="custom-select" required>
+                      <option selected disabled></option>
+                      <option value="fileType">Fichier (.pdf)</option>
+                      <option value="textType">Texte</option>
+                      <option value="audioType" class="text-danger">Audio</option>
+                    </select>
+              </div>
+              <div class="form-group">
+                  <label for="">Ou voulez-vous la dissmuler ?</label>
+                  <select name="SteganoType" id="SteganoType" class="custom-select" required>
+                      <option  disabled selected></option>
+                      <option  value="textStegano" class="text-danger">Dansun <b>Texte</b></option>
+                      <option value="imageStegano">Dans une <b>Image</b></option>
+                      <option value="videoStegano" class="text-danger">Dans une <b>Video</b></option>
+                      <option value="audioStegano">Dans un <b>Audio</b></option>
+                    </select>
+              </div>
+              <button  class="btn btn-outline-primary btn-md  btn-block choice">Suivant</button>
+            </div>
+            <br>
+            <div id="file-and-image">
+
+              <form method="post" enctype="multipart/form-data" action="/home/imageSteganography">
+                {% csrf_token %}
+                    
+                    <div class="form-group">
+                      <label for=""> Choisir fichier a dissmuler</label>
+                        <input type="file" name="source" accept=".doc, .docx, .pdf, .txt" class="form-control" style="border:none ;">
+                    </div>
+                    <div class="form-group">
+                      <label for=""> Choisir image cible</label>
+                        <input type="file" name="target" accept=".png, .jpeg, .jpg" class="form-control" style="border:none ;">
+                    </div>
+                    <button class="btn btn-outline-primary btn-md  btn-block" type="submit">Soumettre</button>
+              </form>
+              
+            </div>
+
+            <div id="text-and-audio">
+              <form method="post" enctype="multipart/form-data" action="/home/audioSteganography">
+                {% csrf_token %}
+
+                <div class="form-group">
+                  <textarea required name="message" id="" cols="30" rows="10" class="form-control" placeholder="Votre message ici"></textarea>
+
+                </div>
+
+                <div class="form-group">
+                  <label for=""> Choisir l'audio cible</label>
+                    <input type="file" name="upload" accept=".wav" class="form-control" style="border:none ;">
+                </div>
+                <button class="btn btn-outline-primary btn-md  btn-block" type="submit">Soumettre</button>
+                
+              </form>
+              
+          
+              
+            </div>
+            <div id="text-and-image">
+              <form method="post" enctype="multipart/form-data" action="/home/textSteganography">
+                {% csrf_token %}
+
+                <div class="form-group">
+                  <textarea required name="message" id="" cols="30" rows="10" class="form-control" placeholder="Votre message ici"></textarea>
+
+                </div>
+
+                <div class="form-group">
+                  <label for=""> Choisir l'image cible</label>
+                    <input type="file" name="upload" accept="image/*" class="form-control" style="border:none ;">
+                </div>
+                <button class="btn btn-outline-primary btn-md  btn-block" type="submit">Soumettre</button>
+                
+              </form>
+              
+          
+              
+            </div>
+            
+        </div>
+
+    </div>
+   </div>
+
+   <script>
+    $(function(){
+    //  alert($('#SteganoType').val())
+      $('#file-and-image').hide();
+      $('#text-and-audio').hide();
+      $('#text-and-image').hide();
+
+      $('.choice').click(function(){
+        if(($('#SteganoType').val()=="imageStegano") && ($('#dataType').val()=="fileType"))
+        {
+           $('#text-and-audio').hide();
+           $('#text-and-image').hide();
+           $('#file-and-image').show();
+          
+        
+        }
+        else if(($('#SteganoType').val()=="audioStegano") && ($('#dataType').val()=="textType"))
+        {
+          $('#file-and-image').hide();
+          $('#text-and-image').hide();
+          $('#text-and-audio').show();
+        }
+        else if(($('#SteganoType').val()=="imageStegano") && ($('#dataType').val()=="textType"))
+        {
+          $('#file-and-image').hide();
+          $('#text-and-image').show();
+          $('#text-and-audio').hide();
+        }
+        else{
+          alert("Unreacheable");
+        }
+      });
+
+    });
+   </script>
+
+</body>
+</html>

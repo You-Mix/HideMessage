@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <title>Cloud Storage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/dropify/dist/css/dropify.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/dropify/dist/css/demo.css' %}">
+  <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+  <script src="{% static 'vendors/dropify/dist/js/dropify.min.js' %}"></script>
+  
+
+</head>
+<body>
+
+   <div class="container" >
+    <a href="/" class="btn btn-outline-primary ">Revenir</a>
+
+        <div class="row">
+            <div class="col-md-8">
+                <form action="/text" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center">Texte dans une image</h2>
+                        {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <textarea class="form-control" name="message" id="" cols="30" rows="7" placeholder="votre message" required></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="file" accept="image/*" name="upload" required class="dropify-fr">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Cacher</button>
+                    </div>
+                    <hr>
+
+                </form>
+            </div>
+             <div class="col-md-4">
+               
+                <form action="/decodeTextImage" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center">Texte dans une image</h2>
+                     {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="file" name="upload" id="" class="dropify-fr">
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" name="key" class="form-control" placeholder="cle de chiffement" required>
+                            </div>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Decoder</button>
+                    </div>
+                    <hr>
+
+                </form>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <form action="/audio" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center">Texte dans un audio</h2>
+                     {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <textarea class="form-control" name="message" id="" cols="30" rows="7" placeholder="votre message"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="file" name="upload" id="" class="dropify-fr">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Cacher</button>
+                    </div>
+                    <hr>
+
+                </form>
+            </div>
+             <div class="col-md-4">
+               
+                 <form action="/decodeTextAudio" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center">Texte dans un audio</h2>
+                     {% csrf_token %}
+                    <div class="row">
+                       
+                        <div class="col-md-12">
+                            <input type="file" name="upload" id="" class="dropify-fr" required>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" name="key" class="form-control" placeholder="cle de chiffement" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-primary btn-block">Decoder</button>
+                    </div>
+                    <hr>
+
+                </form>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <form action="/imageInImage" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center">image dans une image</h2>
+                     {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="file" name="source" id="" class="dropify-fr">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="file" name="target" id="" class="dropify-fr">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Cacher</button>
+                    </div>
+                    <hr>
+
+                </form>
+            </div>
+             <div class="col-md-4">
+               
+                 <form action="/decodeImageInImage" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center">Iamge dans une image</h2>
+                     {% csrf_token %}
+                    <div class="row">
+                       
+                        <div class="col-md-12">
+                            <input type="file" name="upload" id="" class="dropify-fr" required>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" name="key" class="form-control" placeholder="cle de chiffement" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-primary btn-block">Decoder</button>
+                    </div>
+                    <hr>
+
+                </form>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <form action="/document" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center">Document dans une image</h2>
+                     {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="file" name="source" id="" class="dropify-fr">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="file" name="target" id="" class="dropify-fr">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Cacher</button>
+                    </div>
+                    <hr>
+
+                </form>
+            </div>
+             <div class="col-md-4">
+               
+                 <form action="/decodeTextAudio" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center">Document dans une image</h2>
+                     {% csrf_token %}
+                    <div class="row">
+                       
+                        <div class="col-md-12">
+                            <input type="file" name="upload" id="" class="dropify-fr" required>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" name="key" class="form-control" placeholder="cle de chiffement" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-primary btn-block">Decoder</button>
+                    </div>
+                    <hr>
+
+                </form>
+                
+            </div>
+        </div>
+
+   </div>
+   <script>
+    $(document).ready(function(){
+        // Basic
+        $('.dropify').dropify();
+
+        // Translated
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-ici',
+                replace: 'Glissez-ici',
+                remove:  'Supprimer',
+                error:   'Désolé, le fichier trop volumineux'
+            }
+        });
+
+        // Used events
+        var drEvent = $('#input-file-events').dropify();
+
+        drEvent.on('dropify.beforeClear', function(event, element){
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+
+        drEvent.on('dropify.afterClear', function(event, element){
+            alert('File deleted');
+        });
+
+        drEvent.on('dropify.errors', function(event, element){
+            console.log('Has Errors');
+        });
+
+        var drDestroy = $('#input-file-to-destroy').dropify();
+        drDestroy = drDestroy.data('dropify')
+        $('#toggleDropify').on('click', function(e){
+            e.preventDefault();
+            if (drDestroy.isDropified()) {
+                drDestroy.destroy();
+            } else {
+                drDestroy.init();
+            }
+        })
+    });
+</script>
+
+<script>
+    $(function(){
+        $('.hideMe').hide()
+    })
+</script>
+
+</body>
+</html>

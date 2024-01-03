@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <title>Cloud Storage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.css' %}">
+  <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+</head>
+<body>
+
+   <div class="container-fluid" >
+    
+<br><br>
+<br><br>
+    <div class="row">
+        <div class="col-md-5" style=" height: 555px;width: 600px;">
+          <img src="{% static 'images/img2.png' %}" astyle=" height: 100%;width: 100%;">
+        </div>
+        <div class="col-md-7">
+            <h3 class="text-center" style="margin-top: 50px;">
+               <b> Extraction information</b> 
+            </h3>
+
+            <br>
+            <div id="">
+
+              <form method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                    
+                    <div class="form-group">
+                      <label for=""> Nom du fichier</label>
+                        <input type="text" name="name" class="form-control" required >
+                    </div>
+                    <div class="form-group">
+                      <label for=""> Cle de chiffrement</label>
+                        <input type="text" name="key" class="form-control" required >
+                    </div>
+                    <button class="btn btn-outline-primary btn-md  btn-block" type="submit">Soumettre</button>
+              </form>
+              
+            </div>
+            
+        </div>
+
+    </div>
+   </div>
+
+   
+
+</body>
+</html>

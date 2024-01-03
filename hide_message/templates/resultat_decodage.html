@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <title>Hide Message</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.css' %}">
+    <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+  </head>
+  <body>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-primary">
+      <h2 class="text-white text-center h2 text-uppercase">HideMessage</h2>
+    </header>
+
+    <div class="row p-5 w-100 h-100">
+      <a href="{% url 'page_decodage' %}" class="btn btn-outline-primary mb-3">< Revenir</a>
+      <div class="col-12 text-center ">
+        <span class="display-4">Decodage Reussi </span><p>
+        <p class="lead display-5" style="font-size:xx-large;">Ci dessous le message decode.</p><hr>
+      </div>
+      <div class="col-md-3 justify-content-center">
+
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                  <h4 class="my-0 fw-normal">ENTREES</h4>
+              </div>
+              <div class="card-body justify-content-center">
+                  <img src="{% static encoded_image %}" alt="{{output_image}}" srcset="" class="output_image mb-2" />
+                  <input type="text" value="{{decoding_key}}" id="decoding_key" class="form-control text-center" readonly>
+              </div>
+          </div>
+      </div>
+
+        
+      </div>
+      <div class="col-md-9 h-100">
+        <div class="col h-100">
+          <div class="card mb-4 rounded-3 shadow-sm h-100 w-100">
+              <div class="card-header py-3">
+                  <h4 class="my-0 fw-normal">MESSAGE DECODE</h4>
+              </div>
+              <div class="card-body">
+                    {% if isText %}
+                    <h5> Le message decode est un texte : </h5>
+                    <textarea class="lead textare w-100 h-100 p-3" id="decoded_text" readonly>{{decoded_message}}</textarea>
+
+                    {% elif isImage %}
+                    <h5>Le message decode est une image : </h5><hr>
+                    <a href="{% static decoded_image_path %}">
+                      <img src="{% static decoded_image_path %}" alt="{{decoded_image_path}}" srcset="" />
+                    </a>
+
+                    {% elif isDoc %}
+                    <h5>Le message decode est un document : </h5><hr>
+                    <a href="{% static decoded_message %}">Telecharger le document</a>
+
+                    {% else %}
+                    <h4 class="text-danger">{{decoded_message}}</h4>
+                    {% endif %}
+              </div>
+          </div>
+        
+
+      </div>
+        
+    </div>
+  </div>
+    <footer class="d-flex flex-wrap justify-content-center py-3 mt-4 border-top bg-secondary">
+      <h5 class="text-white text-center h5 text-uppercase">TPE VIRTUALISATION ET CLOUD, GROUPE 5 </h5>
+    </footer>
+
+
+    <style>
+      .output_image{
+          height: 200px;
+          width: 200px;
+          object-fit: cover;
+          box-shadow: 100px;
+
+      }
+  </style>
+  <script>
+      function copyText() {
+          keyContainer = document.getElementById("decoding_key");
+          keyContainer.select();
+          document.execCommand("copy");
+          window.getSelection().removeAllRanges();
+          alert("Cle copie avec succes !!!")
+      }
+  </script>
+
+
+  </body>
+</html>
